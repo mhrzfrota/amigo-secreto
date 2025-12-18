@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Natal família Frota Lopes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="card">
+    <h1>🎄 Natal família Frota Lopes 🎄</h1>
+
+    <p class="subtitle">
+      Clique no botão abaixo para revelar<br>
+      seu amigo secreto 🎁
+    </p>
+
+    <button id="revealBtn">Revelar meu amigo secreto</button>
+
+    <div id="result" class="hidden"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    const resultDiv = document.getElementById("result");
+    const button = document.getElementById("revealBtn");
+
+    button.addEventListener("click", () => {
+      if (!id || !dados[id]) {
+        resultDiv.innerHTML = "❌ Link inválido";
+        resultDiv.classList.remove("hidden");
+        return;
+      }
+
+      resultDiv.innerHTML = `
+        🎁 Seu amigo secreto é:<br>
+        <strong>${dados[id]}</strong>
+      `;
+      resultDiv.classList.remove("hidden");
+      button.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
